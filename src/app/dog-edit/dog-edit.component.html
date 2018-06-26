@@ -1,0 +1,26 @@
+<form #dogForm="ngForm">
+    <label for="nick">Nickname:</label>
+    <input type="text" id="nick" required #name="ngModel"
+           [(ngModel)]="nick" name="nick">
+    <div [hidden]="name.valid || name.pristine"
+         style="color:red">
+        Nick is required
+    </div>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" required #num="ngModel"
+           [(ngModel)]="age" name="age">
+    <div [hidden]="num.valid || num.pristine"
+         style="color:red">
+        Age is required
+    </div>
+
+    <label for="breed">Breed:</label>
+    <input type="text" id="breed" #br="ngModel"
+           [(ngModel)]="breed" name="breed">
+    <div [hidden]="br.valid || br.pristine"
+         style="color:red">
+        Breed is required
+    </div>
+</form>
+<button (click)="Addition()" [disabled]="!dogForm.form.valid" routerLink="/list">Send</button>

@@ -1,0 +1,23 @@
+.header {
+    height: 350px;
+    background: url("../assets/img/header-grass.jpg") no-repeat;
+    /*background: linear-gradient(yellow, green);*/
+}
+
+.hearer-title {
+    padding: 16px;
+    color: #FFEA00;
+}
+
+.dog-paw {
+    animation: beat 2s ease-out infinite alternate;
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0.8);
+    }
+}
