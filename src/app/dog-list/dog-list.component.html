@@ -1,5 +1,30 @@
-<ul>
-    <li class="text" *ngFor="let item of items | async">
-        {{item.nick}}
-    </li>
-</ul>
+<div class="height-fix">
+  <h5>These are all the dogs that are in our park right now:</h5>
+  <p>Add a new one!
+    <button class="waves-effect waves-teal btn-flat"
+            routerLink="/add"> Add
+    </button>
+  </p>
+
+  <table style="width: 50%">
+    <thead>
+    <tr>
+      <th>Nickname</th>
+      <th>Age</th>
+      <th>Breed</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let item of items | async">
+      <td>{{item.nick}}</td>
+      <td>{{item.age}}</td>
+      <td>{{item.breed}}</td>
+      <td style="float: right;">
+        <i class="small material-icons">edit</i>
+        <i class="small material-icons">delete</i>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

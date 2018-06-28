@@ -6,8 +6,10 @@ html, body {
 }
 
 body {
+  background: #B9F6CA;
+}
+
+.height-fix {
   position: relative;
-  top: -21px;
-  background: #557917;
-  color: #FFF9C4;
+  top: -42px;
 }
