@@ -18,7 +18,7 @@ export class DogEditComponent implements OnInit {
     }
 
     Addition() {
-        this.db.collection('dogs').add({
+        this.db.collection('dogs').doc(this.nick + this.age).set({
             age: this.age,
             breed: this.breed,
             nick: this.nick
