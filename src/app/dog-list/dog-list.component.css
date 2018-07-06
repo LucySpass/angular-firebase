@@ -1,0 +1,6 @@
+.list-container {
+    overflow-y: auto;
+    max-height: calc(100% - 330px);
+    position: absolute;
+    width: 100%;
+}
