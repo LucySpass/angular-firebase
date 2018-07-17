@@ -1,32 +1,37 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {Observable} from 'rxjs';
+import {DogService} from '../dog.service';
+import {DogModel} from '../dog.model';
 
 @Component({
-    selector: 'app-dog-list',
-    templateUrl: './dog-list.component.html',
-    styleUrls: ['./dog-list.component.css']
+  selector: 'app-dog-list',
+  templateUrl: './dog-list.component.html',
+  styleUrls: ['./dog-list.component.css']
 })
 export class DogListComponent implements OnInit {
-    dogs: Observable<any[]>;
-    dogDoc: AngularFirestoreDocument<any>;
+  dogs: Observable<any[]>;
+  dogDoc: AngularFirestoreDocument<any>;
 
-    constructor(private db: AngularFirestore) {
-        this.dogs = db.collection('dogs').valueChanges();
-    }
+  constructor(private db: AngularFirestore,
+              private dogService: DogService) {
+    this.dogs = db.collection('dogs').valueChanges();
+  }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+  }
 
-    dogDeletion(dog) {
-        if (confirm('Are you sure that you want to delete ' + dog.nick + ' ?')) {
-            this.dogDoc = this.db.doc(`dogs/${dog.nick + dog.age}`);
-            this.dogDoc.delete()
-                .then((error) => console.log(error));
-        }
+  dogDeletion(dog: DogModel) {
+    if (confirm('Are you sure that you want to delete ' + dog.nick + ' ?')) {
+      this.dogDoc = this.db.doc(`dogs/${dog.nick + dog.age}`);
+      this.dogDoc.delete()
+        .then((error) => console.log(error));
     }
+  }
 
-    dogEdit() {
-    }
+  dogEdit(dog: DogModel) {
+    console.log(dog);
+    this.dogService.editDog(dog);
+  }
 
 }

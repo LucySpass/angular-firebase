@@ -1,34 +1,35 @@
 <div class="height-fix list-container">
-    <h5>These are all the dogs that are in our park right now:</h5>
-    <p>Add a new one!
-        <button class="waves-effect waves-light btn"
-                routerLink="/add"> Add
-        </button>
-    </p>
+  <h5>These are all the dogs that are in our park right now:</h5>
+  <p>Add a new one!
+    <button class="waves-effect waves-light btn"
+            routerLink="/add"> Add
+    </button>
+  </p>
 
-    <table style="width: 50%">
-        <thead>
-        <tr>
-            <th>Nickname</th>
-            <th>Age</th>
-            <th>Breed</th>
-        </tr>
-        </thead>
+  <table style="width: 50%">
+    <thead>
+    <tr>
+      <th>Nickname</th>
+      <th>Age</th>
+      <th>Breed</th>
+    </tr>
+    </thead>
 
-        <tbody>
-        <tr *ngFor="let dog of dogs | async">
-            <td>{{dog.nick}}</td>
-            <td>{{dog.age}}</td>
-            <td>{{dog.breed}}</td>
-            <td style="float: right;">
-                <a class="waves-effect waves-light btn btn-floating" (click)="dogEdit(dog)">
-                    <i class="small material-icons">edit</i>
-                </a>
-                <a class="waves-effect waves-light btn btn-floating" (click)="dogDeletion(dog)">
-                    <i class="small material-icons">delete</i>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <tbody>
+    <tr *ngFor="let dog of dogs | async">
+      <td>{{dog.nick}}</td>
+      <td>{{dog.age}}</td>
+      <td>{{dog.breed}}</td>
+      <td style="float: right;">
+        <a class="waves-effect waves-light btn btn-floating" (click)="dogEdit(dog)"
+           routerLink="/dog/{{dog.nick + dog.age}}">
+          <i class="small material-icons">edit</i>
+        </a>
+        <a class="waves-effect waves-light btn btn-floating" (click)="dogDeletion(dog)">
+          <i class="small material-icons">delete</i>
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
