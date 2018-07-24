@@ -13,12 +13,3 @@ The theme is: dog park.
 ## More information
 
 Feel free to edit my database and have fun! :)
-
-## TEST SECTION 
-<section data-markdown>
-	<textarea data-template>
-		## Page title
-
-		A paragraph with some text and a [link](http://hakim.se).
-	</textarea>
-</section>
