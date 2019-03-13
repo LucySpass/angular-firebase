@@ -1,5 +1,5 @@
-import {EventEmitter, Injectable} from '@angular/core';
-import {DogModel} from './dog.model';
+import { EventEmitter, Injectable } from '@angular/core';
+import { DogModel } from './dog.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,7 @@ import {DogModel} from './dog.model';
 export class DogService {
   dog: DogModel;
   newDog: DogModel = {
+    id: -1,
     nick: '',
     age: 0,
     breed: ''

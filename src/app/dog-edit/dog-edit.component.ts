@@ -35,6 +35,7 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
   getSpecificDog(docId: string) {
     const docRef = this.db.collection('dogs').doc(docId);
     this.subscription = docRef.valueChanges().subscribe((item: DogModel) => {
+      console.log(item);
       this.dog = item;
       this.isShown = true;
     });
@@ -45,7 +46,8 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
 
   Addition() {
     if (!this.isEdit) {
-      this.db.collection('dogs').doc(this.dog.nick + this.dog.age).set({
+      // TODO:
+      this.db.collection('dogs').doc(this.dog.id.toString()).set({
         age: this.dog.age,
         breed: this.dog.breed,
         nick: this.dog.nick
@@ -53,7 +55,7 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
         console.error('Error adding document: ', error);
       });
     } else {
-      this.db.collection('dogs').doc(this.dog.nick + this.dog.age).update({
+      this.db.collection('dogs').doc(this.dog.id.toString()).update({
         age: this.dog.age,
         breed: this.dog.breed,
         nick: this.dog.nick

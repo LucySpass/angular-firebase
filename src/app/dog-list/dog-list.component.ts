@@ -27,7 +27,7 @@ export class DogListComponent implements OnInit {
 
   dogDeletion(dog: DogModel) {
     if (confirm('Are you sure that you want to delete ' + dog.nick + ' ?')) {
-      this.dogDoc = this.db.doc(`dogs/${dog.nick + dog.age}`);
+      this.dogDoc = this.db.doc(`dogs/${dog.id}}`);
       this.dogDoc.delete()
         .then((error) => console.log(error));
     }
