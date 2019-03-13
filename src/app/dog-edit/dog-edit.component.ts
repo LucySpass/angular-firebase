@@ -1,8 +1,8 @@
-import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {AngularFirestore} from 'angularfire2/firestore';
-import {DogModel} from '../dog.model';
-import {DogService} from '../dog.service';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { DogModel } from '../dog.model';
+import { DogService } from '../dog.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dog-edit',
@@ -16,8 +16,8 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
   subscription: any;
 
   constructor(private db: AngularFirestore,
-              private route: ActivatedRoute,
-              private dogService: DogService) {
+    private route: ActivatedRoute,
+    private dogService: DogService) {
   }
 
   ngOnInit() {
