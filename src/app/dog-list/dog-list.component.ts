@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable } from 'rxjs';
 import { DogService } from '../dog.service';
 import { DogModel } from '../dog.model';
+import { defineBase } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-dog-list',
@@ -10,15 +11,16 @@ import { DogModel } from '../dog.model';
   styleUrls: ['./dog-list.component.css']
 })
 export class DogListComponent implements OnInit {
-  dogs: Observable<any[]>;
-  dogDoc: AngularFirestoreDocument<any>;
+  $dogs: Observable<any[]>;
 
   constructor(private db: AngularFirestore,
     private dogService: DogService) {
-    this.dogs = db.collection('dogs').valueChanges();
+    this.$dogs = db.collection('dogs').valueChanges();
 
-    db.collection('dogs').valueChanges().subscribe((value) => {
-      console.log(value);
+    db.collection('dogs').valueChanges().subscribe((dogs: DogModel[]) => {
+      console.log(dogs);
+      this.dogService.latestId = Math.max.apply(Math, dogs.map((dog: DogModel) => dog.id));
+      console.log(this.dogService.latestId);
     });
   }
 
@@ -27,9 +29,9 @@ export class DogListComponent implements OnInit {
 
   dogDeletion(dog: DogModel) {
     if (confirm('Are you sure that you want to delete ' + dog.nick + ' ?')) {
-      this.dogDoc = this.db.doc(`dogs/${dog.id}}`);
-      this.dogDoc.delete()
-        .then((error) => console.log(error));
+      this.db.collection('dogs').doc(dog.id.toString())
+        .delete()
+        .then((error) => console.log('Error while deleting an item: ', error));
     }
   }
 

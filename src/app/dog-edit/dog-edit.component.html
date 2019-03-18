@@ -5,16 +5,16 @@
     <form class="col s12" #dogForm="ngForm">
       <div class="row">
         <div class="input-field col s6">
-          <label for="nick">Nickname:</label>
           <input type="text" id="nick" required #name="ngModel" class="validate" [(ngModel)]="dog.nick" name="nick">
+          <label for="nick">Nickname:</label>
           <div [hidden]="name.valid || name.pristine" class="error">
             Nick is required
           </div>
         </div>
 
         <div class="input-field col s6">
-          <label for="age">Age:</label>
           <input type="number" id="age" required #num="ngModel" class="validate" [(ngModel)]="dog.age" name="age">
+          <label for="age">Age:</label>
           <div [hidden]="num.valid || num.pristine" class="error">
             Age is required
           </div>
@@ -23,8 +23,8 @@
         <br>
 
         <div class="input-field col s12">
-          <label for="breed">Breed:</label>
           <input type="text" id="breed" #br="ngModel" class="validate" [(ngModel)]="dog.breed" name="breed">
+          <label for="breed">Breed:</label>
           <div [hidden]="br.valid || br.pristine" class="error">
             Breed is required
           </div>

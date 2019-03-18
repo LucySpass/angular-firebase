@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { DogModel } from '../dog.model';
 import { DogService } from '../dog.service';
 import { ActivatedRoute } from '@angular/router';
+import * as M from '../../assets/materialize/js/materialize';
 
 @Component({
   selector: 'app-dog-edit',
@@ -22,11 +23,13 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     const docId = this.route.snapshot.paramMap.get('id');
+    console.log(docId);
     if (docId !== null) {
       this.getSpecificDog(docId);
+      M.updateTextFields();
     } else {
       this.dogService.addNewDog();
-      this.dog = this.dogService.dog;
+      this.dog = { ...this.dogService.dog };
       this.isEdit = false;
       this.isShown = true;
     }
@@ -36,7 +39,7 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
     const docRef = this.db.collection('dogs').doc(docId);
     this.subscription = docRef.valueChanges().subscribe((item: DogModel) => {
       console.log(item);
-      this.dog = item;
+      this.dog = { ...item };
       this.isShown = true;
     });
   }
@@ -47,22 +50,15 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
   Addition() {
     if (!this.isEdit) {
       // TODO:
-      this.db.collection('dogs').doc(this.dog.id.toString()).set({
-        age: this.dog.age,
-        breed: this.dog.breed,
-        nick: this.dog.nick
-      }).catch(function (error) {
-        console.error('Error adding document: ', error);
-      });
-    } else {
-      this.db.collection('dogs').doc(this.dog.id.toString()).update({
-        age: this.dog.age,
-        breed: this.dog.breed,
-        nick: this.dog.nick
-      }).catch(function (error) {
-        console.error('Error editing document: ', error);
-      });
+      this.dog =
+        {
+          ...this.dog,
+          id: this.dogService.latestId
+        };
     }
+    this.db.collection('dogs').doc(this.dog.id.toString()).set(this.dog).catch(function (error) {
+      console.error('Error adding document: ', error);
+    });
   }
 
   ngOnDestroy() {

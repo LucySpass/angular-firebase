@@ -6,6 +6,9 @@ import { DogModel } from './dog.model';
 })
 export class DogService {
   dog: DogModel;
+
+  latestId: number;
+
   newDog: DogModel = {
     id: -1,
     nick: '',

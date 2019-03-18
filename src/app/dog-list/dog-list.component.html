@@ -15,7 +15,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let dog of dogs | async">
+      <tr *ngFor="let dog of $dogs | async">
         <td>{{dog.nick}}</td>
         <td>{{dog.age}}</td>
         <td>{{dog.breed}}</td>
