@@ -3,7 +3,6 @@ import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection 
 import { Observable } from 'rxjs';
 import { DogService } from '../dog.service';
 import { DogModel } from '../dog.model';
-import { defineBase } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-dog-list',
