@@ -1,30 +1,42 @@
 .dog-toolbar {
-    position: fixed;
-    height: 48px;
-    top: 0;
-    z-index: 2;
+  position: fixed;
+  height: 48px;
+  top: 0;
+  z-index: 2;
 }
 
 .header {
-    height: 330px;
-    background: url("../assets/img/header-grass.jpg") no-repeat;
-    text-align: center;
-    /*background: linear-gradient(yellow, green);*/
+  height: 330px;
+  background: url("../assets/img/header-grass.jpg") no-repeat;
+  text-align: center;
+  /*background: linear-gradient(yellow, green);*/
 }
 
 .hearer-title {
-    color: #FFEA00;
+  color: #FFEA00;
 }
 
 .dog-paw {
-    animation: beat 2s ease-out infinite alternate;
+  animation: beat 2s ease-out infinite alternate;
+}
+
+.content {
+    overflow-y: auto;
+    max-height: calc(100% - 330px);
+    position: absolute;
+    width: 100%;
+    padding: 0 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @keyframes beat {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0.8);
-    }
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
 }

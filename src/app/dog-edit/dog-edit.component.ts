@@ -23,7 +23,6 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit() {
     const docId = this.route.snapshot.paramMap.get('id');
-    console.log(docId);
     if (docId !== null) {
       this.getSpecificDog(docId);
       M.updateTextFields();
@@ -38,7 +37,6 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
   getSpecificDog(docId: string) {
     const docRef = this.db.collection('dogs').doc(docId);
     this.subscription = docRef.valueChanges().subscribe((item: DogModel) => {
-      console.log(item);
       this.dog = { ...item };
       this.isShown = true;
     });
@@ -47,18 +45,15 @@ export class DogEditComponent implements OnInit, OnChanges, OnDestroy {
   ngOnChanges() {
   }
 
-  Addition() {
+  dogChange() {
     if (!this.isEdit) {
-      // TODO:
       this.dog =
         {
           ...this.dog,
-          id: this.dogService.latestId
+          id: ++this.dogService.latestId
         };
     }
-    this.db.collection('dogs').doc(this.dog.id.toString()).set(this.dog).catch(function (error) {
-      console.error('Error adding document: ', error);
-    });
+    this.db.collection('dogs').doc(this.dog.id.toString()).set(this.dog)
   }
 
   ngOnDestroy() {
