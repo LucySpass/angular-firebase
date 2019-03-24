@@ -1,7 +1,7 @@
 # AngularFirebase
 
 ## Introduction
-Simple **Angular 6** application with **Firebase** cloud database.
+Simple **Angular 7** application with **Firebase** cloud database.
 The theme is: dog park.
 
 ## Quickstart
